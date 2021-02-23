@@ -13,7 +13,7 @@ class User(AbstractUser):
     GENDER_CHOICES = (
         (GENDER_MALE, "Male"),
         (GENDER_FEMALE, "Female"),
-        (GENDER_MALE, "Other"),
+        (GENDER_OTHER, "Other"),
     )
 
     LANGUAGE_JAPANESE = "ja"
