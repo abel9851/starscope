@@ -48,6 +48,7 @@ PROJECT_APPS = [
     "users.apps.UsersConfig",
     "places.apps.PlacesConfig",
     "reviews.apps.ReviewsConfig",
+    "lists.apps.ListsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
