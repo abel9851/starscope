@@ -5,4 +5,12 @@ from . import models
 @admin.register(models.List)
 class ListAdmin(admin.ModelAdmin):
 
-    pass
+    list_display = (
+        "name",
+        "user",
+        "count_places",
+    )
+
+    filter_horizontal = ("places",)
+
+    search_fields = ("name",)
