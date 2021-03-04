@@ -33,7 +33,7 @@ class Command(BaseCommand):
         created_clean = flatten(list(created_photos.values()))
         for pk in created_clean:
             place = place_models.Place.objects.get(pk=pk)
-            for i in range(3, random.randint(10, 17)):
+            for i in range(3, random.randint(10, 30)):
                 place_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     place=place,
