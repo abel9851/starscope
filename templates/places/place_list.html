@@ -4,7 +4,11 @@
 {% block blockname %}
 
     {% for place in places %}
-        <h1>{{place.name}}</h1>
+    <a href="{% url "places:detail" place.pk %}">
+        <h1>
+            {{place.name}}
+        </h1>
+    </a>         
     {% endfor %}
 
     <h5>

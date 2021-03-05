@@ -1,6 +1,7 @@
 from django.db import models
 from django_countries.fields import CountryField
 from core import models as core_models
+from django.urls import reverse
 
 
 class Photo(core_models.TimeStampedModel):
@@ -30,7 +31,6 @@ class Place(core_models.TimeStampedModel):
     """
     역에 대한 정보도 넣고 싶은데 가까운곳 찾기로.
     구글맵이랑 연동 해야할 듯?
-    
     그리고 접근성(airbnb에 있는.)을 추가할지 고려해보자.
     """
 
@@ -40,6 +40,9 @@ class Place(core_models.TimeStampedModel):
     def save(self, *args, **kwargs):
         self.city = self.city.title()
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("places:detail", kwargs={"pk": self.pk})
 
     def total_rating(self):
         all_reviews = self.reviews.all()
