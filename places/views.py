@@ -27,6 +27,7 @@ class SearchView(View):
 
     def get(self, request):
         country = request.GET.get("country")
+        city = request.GET.get("city")
 
         if country:
             form = forms.SearchForm(request.GET)
@@ -58,6 +59,6 @@ class SearchView(View):
                 )
 
         else:
-            form = forms.SearchForm()
+            form = forms.SearchForm(initial={"city": city})
 
         return render(request, "places/search.html", {"form": form})

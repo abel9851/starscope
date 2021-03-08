@@ -14,7 +14,7 @@
             
             {% block search-bar %}            
                 <form method="get" action="{% url "places:search" %}" >
-                    <input value="Tokyo" name="city" placeholder="Search by city" />
+                    <input name="city" placeholder="Search by city" />
                 </form>
             {% endblock search-bar %}
         </header>
