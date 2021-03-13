@@ -28,6 +28,7 @@ class CustomUserAdmin(UserAdmin):
                     "language",
                     "currency",
                     "supercontentprovider",
+                    "login_method",
                 )
             },
         ),
@@ -44,4 +45,7 @@ class CustomUserAdmin(UserAdmin):
         "currency",
         "is_staff",
         "supercontentprovider",
+        "email_verified",
+        "email_secret",
+        "login_method",
     )
