@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from django.views import View
 from django.views.generic import FormView
@@ -195,4 +196,70 @@ def kakao_callback(request):
         login(request, user)
         return redirect(reverse("core:home"))
     except KakaoException:
+        return redirect(reverse("users:login"))
+
+
+def line_login(request):
+    client_id = os.environ.get("LINE_ID")
+    redirect_uri = "http://127.0.0.1:8000/users/login/line/callback"
+    state = "line2350"
+    return redirect(
+        f"https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id={client_id}&redirect_uri={redirect_uri}&state={state}&scope=profile"
+    )
+
+
+class LineException(Exception):
+    pass
+
+
+def line_callback(request):
+    try:
+        code = request.GET.get("code")
+        uri_access_token = "https://api.line.me/oauth2/v2.1/token"
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        data_programs = {
+            "grant_type": "authorization_code",
+            "code": code,
+            "redirect_uri": "http://127.0.0.1:8000/users/login/line/callback",
+            "client_id": os.environ.get("LINE_ID"),
+            "client_secret": os.environ.get("LINE_SECRET"),
+        }
+        response_post = requests.post(
+            uri_access_token,
+            headers=headers,
+            data=data_programs,
+        )
+
+        token_json = response_post.json()
+        access_token = token_json.get("access_token")
+        profile_request = requests.get(
+            "https://api.line.me/v2/profile",
+            headers={"Authorization": f"Bearer {access_token}"},
+        )
+        profile_json = profile_request.json()
+        nickname = profile_json.get("displayName", "")
+        email = profile_json.get("displayName", "")
+        profile_image = profile_json.get("pictureUrl", None)
+        try:
+            user = models.User.objects.get(email=email)
+            if user.login_method != models.User.LOGIN_LINE:
+                raise LineException()
+        except models.User.DoesNotExist:
+            user = models.User.objects.create(
+                email=email,
+                username=email,
+                first_name=nickname,
+                login_method=models.User.LOGIN_LINE,
+                email_verified=True,
+            )
+            user.set_unusable_password()
+            user.save()
+            if profile_image is not None:
+                photo_request = requests.get(profile_image)
+                user.avatar.save(
+                    f"{nickname}-avatar.jpeg", ContentFile(photo_request.content)
+                )
+        login(request, user)
+        return redirect(reverse("core:home"))
+    except LineException:
         return redirect(reverse("users:login"))

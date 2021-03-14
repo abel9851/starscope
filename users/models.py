@@ -44,11 +44,13 @@ class User(AbstractUser):
     LOGIN_EMAIL = "email"
     LOGIN_GITHUB = "github"
     LOGIN_KAKAO = "kakao"
+    LOGIN_LINE = "line"
 
     LOGIN_CHOICES = (
         (LOGIN_EMAIL, "Email"),
         (LOGIN_GITHUB, "Github"),
-        (LOGIN_KAKAO, "line"),
+        (LOGIN_KAKAO, "Kakao"),
+        (LOGIN_LINE, "Line"),
     )
 
     avatar = models.ImageField(upload_to="avatars", blank=True)
