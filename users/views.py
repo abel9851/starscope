@@ -1,5 +1,4 @@
 import os
-import json
 import requests
 from django.views import View
 from django.views.generic import FormView
@@ -11,10 +10,10 @@ from . import forms, models
 
 
 class LoginView(FormView):
+
     template_name = "users/login.html"
     form_class = forms.LoginForm
     success_url = reverse_lazy("core:home")
-    initial = {"email": "abel9851@naver.com"}
 
     def form_valid(self, form):
         email = form.cleaned_data.get("email")
@@ -34,11 +33,6 @@ class SignUpView(FormView):
     template_name = "users/signup.html"
     form_class = forms.SignUpForm
     success_url = reverse_lazy("core:home")
-    initial = {
-        "first_name": "HEEJUN",
-        "last_name": "SHIN",
-        "email": "abel9851@naver.com",
-    }
 
     def form_valid(self, form):
         form.save()
@@ -72,7 +66,7 @@ def github_login(request):
     )
 
 
-class GitHubException(Exception):
+class GithubException(Exception):
     pass
 
 
@@ -89,11 +83,11 @@ def github_callback(request):
             token_json = token_request.json()
             error = token_json.get("error", None)
             if error is not None:
-                raise GitHubException()
+                raise GithubException()
             else:
                 access_token = token_json.get("access_token")
                 profile_request = requests.get(
-                    f"https://api.github.com/user",
+                    "https://api.github.com/user",
                     headers={
                         "Authorization": f"token {access_token}",
                         "Accept": "application/json",
@@ -111,7 +105,7 @@ def github_callback(request):
                     try:
                         user = models.User.objects.get(email=email)
                         if user.login_method != models.User.LOGIN_GITHUB:
-                            raise GitHubException()
+                            raise GithubException()
                     except models.User.DoesNotExist:
                         user = models.User.objects.create(
                             email=email,
@@ -126,10 +120,10 @@ def github_callback(request):
                     login(request, user)
                     return redirect(reverse("core:home"))
                 else:
-                    raise GitHubException()
+                    raise GithubException()
         else:
-            raise GitHubException()
-    except GitHubException:
+            raise GithubException()
+    except GithubException:
         # send error message
         return redirect(reverse("users:login"))
 

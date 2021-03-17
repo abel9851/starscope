@@ -1,0 +1,20 @@
+
+<div class="w-1/4 mb-10 px-2 overflow-hidden">
+    <a href="{% url "places:detail" place.pk %}">
+        <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2" style="background-image: url({{place.first_photo}})"></div>
+        <div class="flex justify-between mb-2 truncate">
+            <div class="w-4/5 overflow-hidden flex">
+                {% if place.viewfinder.supercontentprovider %}
+                    <span class="mr-2 uppercase font-medium text-xs border border-black text-black rounded py-px px-1 items-center">good place</span>
+                {% endif %}
+                <span class="ttext-sm text-gray-600 block truncate">{{place.city}}, {{place.country.name}}</span>
+            </div>
+            <span class='text-sm flex items-center'>
+                <i class="fas fa-star text-indigo-600 text-xs mr-1"></i> {{place.total_rating}}
+            </span>
+        </div>
+        <span class="text-black w-11/12 block truncate">{{place.name}}</span>
+    </a>
+</div>
+
+
