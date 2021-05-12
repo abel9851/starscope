@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Uploading Review
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+        <span class="font-medium text-2xl text-center w-full block mb-5">Write your review</span>
+        <form action="" method="POST" class="w-1/2 mx-auto">
+            {% csrf_token %}
+            {{form}}
+            <button class="btn-link mt-5">Save Review</button>
+        </form>
+
+{% endblock content %}

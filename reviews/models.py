@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from core import models as core_models
 
 
@@ -7,10 +8,18 @@ class Review(core_models.TimeStampedModel):
     """ Review Model Definition """
 
     review = models.TextField(verbose_name="レビュー")
-    accuracy = models.IntegerField(verbose_name="正確性")
-    location = models.IntegerField(verbose_name="位置")
-    cleanliness = models.IntegerField(verbose_name="淸潔")
-    satisfaction = models.IntegerField(verbose_name="満足度")
+    accuracy = models.IntegerField(
+        verbose_name="正確性", validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    location = models.IntegerField(
+        verbose_name="位置", validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    cleanliness = models.IntegerField(
+        verbose_name="淸潔", validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    satisfaction = models.IntegerField(
+        verbose_name="満足度", validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
     user = models.ForeignKey(
         "users.User", related_name="reviews", on_delete=models.CASCADE
     )
@@ -26,3 +35,6 @@ class Review(core_models.TimeStampedModel):
         return round(avg, 2)
 
     rating_average.short_description = "Avg."
+
+    class Meta:
+        ordering = ("-created",)
