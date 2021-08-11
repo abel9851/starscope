@@ -50,13 +50,13 @@
                                 {% include 'mixins/user_avatar.html' with user=review.user h_and_w='w-10 h-10' text='text-xl' %}
                             </div>
                             <div class="flex flex-col ml-5">
-                                <span class="font-medium">
+                                <div class="font-medium">
                                     <div class="justify-between text-red-500">
-                                        <a href="{% url 'reviews:update' place.pk review.pk %}">Update Review</a>
-                                        <a href="{% url 'reviews:delete' place.pk review.pk %}">Delete Review</a>
+                                        <a href="{% url 'reviews:update' place.pk review.pk %}">Update</a>
+                                        <a href="{% url 'reviews:delete' place.pk review.pk %}">Delete</a>
                                     </div>
                                     {{review.user.first.name}}
-                                </span>
+                                </div>
                                 <span class="text-sm text-gray-500">{{review.created|date:'F-Y'}}</span>
                             </div>
                         </div>

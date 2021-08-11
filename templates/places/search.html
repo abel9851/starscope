@@ -19,7 +19,7 @@
     <h3>Results</h3>
 
     {% for place in places %}
-        <h3>{{place.name}}</h3>
+    <a href="{% url 'places:detail' place.pk %}"><span class="text-black w-11/12 block truncate font-bold">{{place.name}}</span></h3>
     {% endfor %}
 
 {% endblock content %}

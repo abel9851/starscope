@@ -20,5 +20,5 @@ class CreateReviewForm(forms.ModelForm):
         )
 
     def save(self):
-        review = super().save(commit=False)
-        return review
+        reviews = super().save(commit=False)
+        return reviews

@@ -1,3 +1,12 @@
+{% load i18n %}
 <footer class="container mx-auto text-center py-10 border-t font-medium text-gray-500">
-    &copy; starscope
+    <div>
+        {% trans '&copy; starscope' %}
+    </div>
+    <div class='mt-10 flex'>
+        <select class="w-1/5 h-8" id="js-lang">
+            <option value="en">English</option>
+            <option value="jp">Japanese</option>
+        </select>
+    </div>
 </footer>
