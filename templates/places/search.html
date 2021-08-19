@@ -13,13 +13,16 @@
 
     <form method="get" action="{% url "places:search" %}">
         {{form.as_p}}
-        <button>Search</button>
+        <button class="m-2 text-lg px-2 pb-1 bg-red-400 rounded-lg text-white">Search</button>
     </form>
 
-    <h3>Results</h3>
+    <h3 class="border-b pb-3 border-gray-600 my-2 ml-1 text-xl">Results</h3>
 
-    {% for place in places %}
-    <a href="{% url 'places:detail' place.pk %}"><span class="text-black w-11/12 block truncate font-bold">{{place.name}}</span></h3>
-    {% endfor %}
+    <div class="flex flex-wrap mb-10">
+        {% for place in places %}
+        {% include 'mixins/room_card.html' with room=room %}
+        {% endfor %}
+    </div>
+
 
 {% endblock content %}
