@@ -7,6 +7,7 @@ urlpatterns = [
     path("create/", views.CreatePlaceView.as_view(), name="create"),
     path("<int:pk>/", views.PlaceDetail.as_view(), name="detail"),
     path("<int:pk>/edit/", views.EditPlaceView.as_view(), name="edit"),
+    path("<int:place_pk>/delete/", views.delete_place, name="delete"),
     path("<int:pk>/photos/", views.PlacePhotosView.as_view(), name="photos"),
     path("<int:pk>/photos/add", views.AddPhotoView.as_view(), name="add-photo"),
     path(

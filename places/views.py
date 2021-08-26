@@ -1,3 +1,4 @@
+from django.contrib.messages.api import error
 from django.http import Http404
 from django.views.generic import ListView, DetailView, View, UpdateView, FormView
 from django.shortcuts import render, redirect, reverse
@@ -85,6 +86,24 @@ class EditPlaceView(user_mixins.LoggedInOnlyView, UpdateView):
         if place.viewfinder.pk != self.request.user.pk:
             raise Http404()
         return place
+
+
+def delete_place(request, place_pk):
+    user = request.user
+
+    try:
+        place = models.Place.objects.get(pk=place_pk)
+        if place.viewfinder.pk != user.pk:
+            messages.error(request, "You can't delete this place")
+
+        else:
+            messages.success(request, "Place Deleted")
+            place.delete()
+
+        return redirect(reverse("core:home"))
+
+    except models.Place.DoesNotExist:
+        redirect(reverse("core:home"))
 
 
 class PlacePhotosView(user_mixins.LoggedInOnlyView, DetailView):
