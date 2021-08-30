@@ -71,7 +71,7 @@
             <a href="{% url 'places:edit' place.pk %}" class="btn-link block mb-5 bg-green-500">Edit Place</a>
             <a href="{% url 'places:delete' place.pk %}" class="btn-link block" onclick="return confirm('Do you want delete this room?')">Delete Place</a>
         {% else %}
-            <a href="{% url 'reviews:form' place.pk %}" class="btn-link block">Review creates</a>
+            <a href="{% url 'reviews:create' place.pk %}" class="btn-link block">Review creates</a>
         {% endif %}
     </div>
 
