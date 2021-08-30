@@ -25,6 +25,9 @@ def create_review(request, place):
             review.save()
             messages.success(request, "place reviewed")
             return redirect(reverse("places:detail", kwargs={"pk": place.pk}))
+        else:
+            messages.error(request, "You inputted inapposite data")
+            redirect(reverse("core:home"))
 
     return render(request, "reviews/create.html", {"form": form, "place": place})
 
@@ -41,8 +44,8 @@ def update_review(request, place, comment):
     if request.method == "POST":
         form = forms.CreateReviewForm(request.POST, instance=review)
         if form.is_valid():
-            messages.success(request, "Review updated")
             review = form.save()
+            messages.success(request, "Review updated")
             review.save()
             return redirect(reverse("places:detail", kwargs={"pk": place.pk}))
     else:
