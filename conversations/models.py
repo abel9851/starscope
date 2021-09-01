@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from core import models as core_models
 
 
@@ -7,7 +8,10 @@ class Conversation(core_models.TimeStampedModel):
     """ Conversation Model Definition """
 
     participants = models.ManyToManyField(
-        "users.User", related_name="conversations", blank=True
+        "users.User",
+        related_name="conversations",
+        blank=True,
+        verbose_name=_("participants"),
     )
 
     def __str__(self):
@@ -35,12 +39,20 @@ class Message(core_models.TimeStampedModel):
 
     """ Message Model Definition """
 
-    message = models.TextField()
+    message = models.TextField(
+        _("message"),
+    )
     user = models.ForeignKey(
-        "users.User", related_name="messages", on_delete=models.CASCADE
+        "users.User",
+        related_name="messages",
+        on_delete=models.CASCADE,
+        verbose_name=_("user"),
     )
     conversation = models.ForeignKey(
-        "Conversation", related_name="messages", on_delete=models.CASCADE
+        "Conversation",
+        related_name="messages",
+        on_delete=models.CASCADE,
+        verbose_name=_("conversation"),
     )
 
     def __str__(self):

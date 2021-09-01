@@ -1,12 +1,13 @@
+{% load i18n %}
 <ul class="flex items-center text-sm font-semibold h-full">
     
     {% if user.is_authenticated %}
-    <li class="nav_link"><a href="{%url 'places:create' %}">Create Place</a></li>
-    <li class="nav_link"><a href="{{user.get_absolute_url}}">Profile</a></li>
-    <li class="nav_link"><a href="{% url "users:logout" %}">Log out</a></li>
+    <li class="nav_link"><a href="{%url 'places:create' %}">{% trans 'Create Place' %}</a></li>
+    <li class="nav_link"><a href="{{user.get_absolute_url}}">{% trans 'Profile' %}</a></li>
+    <li class="nav_link"><a href="{% url "users:logout" %}">{% trans 'Log out' %}</a></li>
     {% else %}
-    <li class="nav_link"><a href="{% url "users:login" %}">Login</a></li>
-    <li class="nav_link"><a href="{% url "users:signup" %}">Sign up</a></li>
+    <li class="nav_link"><a href="{% url "users:login" %}">{% trans 'Login' %}</a></li>
+    <li class="nav_link"><a href="{% url "users:signup" %}">{% trans 'Sign up' %}</a></li>
     {% endif %}
         
 

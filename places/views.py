@@ -1,4 +1,4 @@
-from django.contrib.messages.api import error
+from django.utils.translation import gettext_lazy as _
 from django.http import Http404
 from django.views.generic import ListView, DetailView, View, UpdateView, FormView
 from django.shortcuts import render, redirect, reverse
@@ -94,10 +94,10 @@ def delete_place(request, place_pk):
     try:
         place = models.Place.objects.get(pk=place_pk)
         if place.viewfinder.pk != user.pk:
-            messages.error(request, "You can't delete this place")
+            messages.error(request, _("You can't delete this place"))
 
         else:
-            messages.success(request, "Place Deleted")
+            messages.success(request, _("Place Deleted"))
             place.delete()
 
         return redirect(reverse("core:home"))
@@ -124,10 +124,10 @@ def delete_photo(request, place_pk, photo_pk):
     try:
         place = models.Place.objects.get(pk=place_pk)
         if place.viewfinder.pk != user.pk:
-            messages.error(request, "Can't delete that photo")
+            messages.error(request, _("Can't delete that photo"))
         else:
             models.Photo.objects.filter(pk=photo_pk).delete()
-            messages.success(request, "photo deleted")
+            messages.success(request, _("photo deleted"))
         return redirect(reverse("places:photos", kwargs={"pk": place_pk}))
     except models.Place.DoesNotExist:
         return redirect(reverse("core:home"))
@@ -154,7 +154,7 @@ class AddPhotoView(user_mixins.LoggedInOnlyView, FormView):
     def form_valid(self, form):
         pk = self.kwargs.get("pk")
         form.save(pk)
-        messages.success(self.request, "Photo Uploaded")
+        messages.success(self.request, _("Photo Uploaded"))
         return redirect(reverse("places:photos", kwargs={"pk": pk}))
 
 
@@ -168,5 +168,5 @@ class CreatePlaceView(user_mixins.LoggedInOnlyView, FormView):
         place.viewfinder = self.request.user
         place.save()
         form.save_m2m()
-        messages.success(self.request, "Place Created")
+        messages.success(self.request, _("Place Created"))
         return redirect(reverse("places:detail", kwargs={"pk": place.pk}))

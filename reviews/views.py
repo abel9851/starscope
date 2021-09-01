@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from places import models as place_models
@@ -23,10 +24,10 @@ def create_review(request, place):
             review.place = place
             review.user = request.user
             review.save()
-            messages.success(request, "place reviewed")
+            messages.success(request, _("place reviewed"))
             return redirect(reverse("places:detail", kwargs={"pk": place.pk}))
         else:
-            messages.error(request, "You inputted inapposite data")
+            messages.error(request, _("You inputted inapposite data"))
             redirect(reverse("core:home"))
 
     return render(request, "reviews/create.html", {"form": form, "place": place})
@@ -38,14 +39,14 @@ def update_review(request, place, comment):
     place = place_models.Place.objects.get_or_none(pk=place)
 
     if request.user != review.user:
-        messages.error(request, "You can't")
+        messages.error(request, _("You can't"))
         return redirect(reverse("places:detail", kwargs={"pk": place.pk}))
 
     if request.method == "POST":
         form = forms.CreateReviewForm(request.POST, instance=review)
         if form.is_valid():
             review = form.save()
-            messages.success(request, "Review updated")
+            messages.success(request, _("Review updated"))
             review.save()
             return redirect(reverse("places:detail", kwargs={"pk": place.pk}))
     else:
@@ -59,9 +60,9 @@ def delete_review(request, place, comment):
     place = place_models.Place.objects.get_or_none(pk=place)
 
     if request.user != review.user:
-        messages.error(request, "You can't")
+        messages.error(request, _("You can't"))
         return redirect(reverse("places:detail", kwargs={"pk": place.pk}))
 
-    messages.success(request, "Review deleted")
+    messages.success(request, _("Review deleted"))
     review.delete()
     return redirect(reverse("places:detail", kwargs={"pk": place.pk}))

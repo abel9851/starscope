@@ -1,8 +1,9 @@
 import os
 import requests
+from django.utils import translation
+from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponse
 from django.contrib.auth.views import PasswordChangeView
-from django.views import View
 from django.views.generic import FormView, DetailView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, reverse
@@ -36,7 +37,7 @@ class LoginView(mixins.LoggedOutOnlyView, FormView):
 
 
 def logout_view(request):
-    messages.info(request, "See you later")
+    messages.info(request, _("See you later"))
     logout(request)
     return redirect(reverse("core:home"))
 
@@ -95,7 +96,7 @@ def github_callback(request):
             token_json = token_request.json()
             error = token_json.get("error", None)
             if error is not None:
-                raise GithubException("Can't get access token")
+                raise GithubException(_("Can't get access token"))
             else:
                 access_token = token_json.get("access_token")
                 profile_request = requests.get(
@@ -130,12 +131,14 @@ def github_callback(request):
                         user.set_unusable_password()
                         user.save()
                     login(request, user)
-                    messages.success(request, f"Welcome back! {user.first_name}")
+                    messages.success(
+                        request, _("Welcome back! {}").format(user.first_name)
+                    )
                     return redirect(reverse("core:home"))
                 else:
-                    raise GithubException("Can't get your profile")
+                    raise GithubException(_("Can't get your profile"))
         else:
-            raise GithubException("Can't get code")
+            raise GithubException(_("Can't get code"))
     except GithubException as e:
         messages.error(request, e)
         return redirect(reverse("users:login"))
@@ -164,7 +167,7 @@ def kakao_callback(request):
         token_json = token_request.json()
         error = token_json.get("error", None)
         if error is not None:
-            raise KakaoException("Can't get authorization code.")
+            raise KakaoException(_("Can't get authorization code."))
         ACCESS_TOKEN = token_json.get("access_token")
         profile_request = requests.get(
             "https://kapi.kakao.com/v2/user/me",
@@ -183,7 +186,9 @@ def kakao_callback(request):
         try:
             user = models.User.objects.get(email=email)
             if user.login_method != models.User.LOGIN_KAKAO:
-                raise KakaoException(f"Please log in with:{user.login_method}")
+                raise KakaoException(
+                    _("Please log in with:{}").format(user.login_method)
+                )
         except models.User.DoesNotExist:
             user = models.User.objects.create(
                 email=email,
@@ -201,7 +206,7 @@ def kakao_callback(request):
                     f"{nickname}-avatar.jpeg", ContentFile(photo_request.content)
                 )
         login(request, user)
-        messages.success(f"Welcome back! {user.first_name}")
+        messages.success(request, _("Welcome back! {}").format(user.first_name))
         return redirect(reverse("core:home"))
     except KakaoException as e:
         messages.error(request, e)
@@ -252,7 +257,9 @@ def line_callback(request):
         try:
             user = models.User.objects.get(email=email)
             if user.login_method != models.User.LOGIN_LINE:
-                raise LineException(f"Please log in with {user.login_method}")
+                raise LineException(
+                    _("Please log in with {}").format(user.login_method)
+                )
         except models.User.DoesNotExist:
             user = models.User.objects.create(
                 email=email,
@@ -269,7 +276,7 @@ def line_callback(request):
                     f"{nickname}-avatar.jpeg", ContentFile(photo_request.content)
                 )
         login(request, user)
-        messages.success(request, f"welcome back! {user.first_name}")
+        messages.success(request, _("welcome back! {}").format(user.first_name))
         return redirect(reverse("core:home"))
     except LineException as e:
         messages.error(request, e)
@@ -295,17 +302,17 @@ class UpdateProfileView(mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView
         "language",
         "currency",
     )
-    success_message = "Profile Updated"
+    success_message = _("Profile Updated")
 
     def get_object(self, queryset=None):
         return self.request.user
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
-        form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
-        form.fields["last_name"].widget.attrs = {"placeholder": "Last name"}
-        form.fields["bio"].widget.attrs = {"placeholder": "Bio"}
-        form.fields["birthdate"].widget.attrs = {"placeholder": "Birthdate"}
+        form.fields["first_name"].widget.attrs = {"placeholder": _("First name")}
+        form.fields["last_name"].widget.attrs = {"placeholder": _("Last name")}
+        form.fields["bio"].widget.attrs = {"placeholder": _("Bio")}
+        form.fields["birthdate"].widget.attrs = {"placeholder": _("Birthdate")}
         return form
 
 
@@ -321,10 +328,12 @@ class UpdatePasswordView(
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
-        form.fields["old_password"].widget.attrs = {"placeholder": "Current Password"}
-        form.fields["new_password1"].widget.attrs = {"placeholder": "New password"}
+        form.fields["old_password"].widget.attrs = {
+            "placeholder": _("Current Password")
+        }
+        form.fields["new_password1"].widget.attrs = {"placeholder": _("New password")}
         form.fields["new_password2"].widget.attrs = {
-            "placeholder": "Confirm new password"
+            "placeholder": _("Confirm new password")
         }
         return form
 
@@ -335,5 +344,8 @@ class UpdatePasswordView(
 def switch_language(request):
     lang = request.GET.get("lang", None)
     if lang is not None:
-        pass
+        if translation.LANGUAGE_SESSION_KEY in request.session:
+            del request.session[translation.LANGUAGE_SESSION_KEY]
+        translation.activate(lang)
+        request.session[translation.LANGUAGE_SESSION_KEY] = lang
     return HttpResponse(status=200)

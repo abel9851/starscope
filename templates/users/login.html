@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block page_title %}
     Log In
@@ -17,7 +18,7 @@
 
         <div class="mt-5">
             <span class="mr-2">Don't have an account?</span>
-            <a href="{% url 'users:signup' %}" class="text-blue-500 font-medium">Sign up</a>
+            <a href="{% url 'users:signup' %}" class="text-blue-500 font-medium">{% trans 'Sign up' %}</a>
         </div>
     </div>
 {% endblock content %}

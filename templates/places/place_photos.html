@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block page_title %}
     {{place.name}}'s Photos
@@ -10,7 +11,7 @@
 {% block content %}
     <div class="container mx-auto my-10 flex flex-col">
         <div class='my-10 w-full'>
-            <a href="{% url 'places:add-photo' place.pk %}" class="btn-link w-1/6 block">Upload Photo</a>
+            <a href="{% url 'places:add-photo' place.pk %}" class="btn-link w-1/6 block">{% trans 'Upload Photo' %}</a>
         </div>
 
         {% for photo in place.photos.all %}
@@ -20,14 +21,14 @@
                 <span class="ml-5 text-xl">{{photo.caption}}</span>
             </div>
             <div class='flex flex-col w-1/6'>
-                <a href="{% url 'places:edit-photo' place.pk photo.pk %}" class="btn-link block mb-5 bg-green-500">Edit</a>
-                <a href="{% url 'places:delete-photo' place.pk photo.pk %}" class="btn-link block bg-red-600">Delete</a>
+                <a href="{% url 'places:edit-photo' place.pk photo.pk %}" class="btn-link block mb-5 bg-green-500">{% trans 'Edit' %}</a>
+                <a href="{% url 'places:delete-photo' place.pk photo.pk %}" class="btn-link block bg-red-600">{% trans 'Delete' %}</a>
             </div>
 
         </div>
         {% endfor %}
         <div class="flex justify-center">
-            <a href="{% url 'places:edit' place.pk %}" class="text-green-500 font-medium text-xl mt-5">Back to edit place</a>
+            <a href="{% url 'places:edit' place.pk %}" class="text-green-500 font-medium text-xl mt-5">{% trans 'Back to edit place' %}</a>
         </div>
 
     </div>

@@ -4,9 +4,18 @@
         {% trans '&copy; starscope' %}
     </div>
     <div class='mt-10 flex'>
+        {% get_current_language as LANGUAGE_CODE %}
         <select class="w-1/5 h-8" id="js-lang">
-            <option value="en">English</option>
-            <option value="jp">Japanese</option>
+            <option value="en"
+            {% if LANGUAGE_CODE == 'en' %}
+                selected
+            {% endif %}
+            >{% trans 'English' %}</option>
+            <option value="ja"
+            {% if LANGUAGE_CODE == 'ja' %}
+                selected
+            {% endif %}
+            >{% trans 'Japanese' %}</option>
         </select>
     </div>
 </footer>

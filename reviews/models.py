@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.translation import gettext_lazy as _
 from core import models as core_models
 
 
@@ -7,24 +8,34 @@ class Review(core_models.TimeStampedModel):
 
     """ Review Model Definition """
 
-    review = models.TextField(verbose_name="レビュー")
+    review = models.TextField(verbose_name=_("review"))
     accuracy = models.IntegerField(
-        verbose_name="正確性", validators=[MinValueValidator(1), MaxValueValidator(5)]
+        verbose_name=_("Accuracy"),
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
     )
     location = models.IntegerField(
-        verbose_name="位置", validators=[MinValueValidator(1), MaxValueValidator(5)]
+        verbose_name=_("Location"),
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
     )
     cleanliness = models.IntegerField(
-        verbose_name="淸潔", validators=[MinValueValidator(1), MaxValueValidator(5)]
+        verbose_name=_("Cleanliness"),
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
     )
     satisfaction = models.IntegerField(
-        verbose_name="満足度", validators=[MinValueValidator(1), MaxValueValidator(5)]
+        verbose_name=_("Satisfaction"),
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
     )
     user = models.ForeignKey(
-        "users.User", related_name="reviews", on_delete=models.CASCADE
+        "users.User",
+        related_name="reviews",
+        on_delete=models.CASCADE,
+        verbose_name=_("user"),
     )
     place = models.ForeignKey(
-        "places.Place", related_name="reviews", on_delete=models.CASCADE
+        "places.Place",
+        related_name="reviews",
+        on_delete=models.CASCADE,
+        verbose_name=_("place"),
     )
 
     def __str__(self):
