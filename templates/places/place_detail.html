@@ -23,11 +23,12 @@
                 <h4 class="text-3xl font-medium mb-px">{{place.name}}</h4>
                 <span class="text-gray-700 font-light">{{place.city}}</span>
             </div>
-            <a href="{{place.viewfinder.get_absoute_url}}" class="flex flex-col items-center">
+            <a href="{{place.viewfinder.get_absolute_url}}" class="flex flex-col items-center">
                 {% include 'mixins/user_avatar.html' with user=place.viewfinder %}
                 <span class="mt-2 text-gray-700">{{place.viewfinder.first_name}}</span>
             </a>
         </div>
+        <a href="{% url 'lists:save-place' place.pk %}" class="btn-link block mb-5 w-2/6">{% trans 'Save to Favorites' %}</a>
         <div class="flex border-section"></div>
         <p class="border-section">{{place.description}}</p>
         <div class="mt-10">
@@ -72,7 +73,8 @@
             <a href="{% url 'places:edit' place.pk %}" class="btn-link block mb-5 bg-green-500">{% trans 'Edit Place' %}</a>
             <a href="{% url 'places:delete' place.pk %}" class="btn-link block" onclick="return confirm('Do you want delete this room?')">{% trans 'Delete Place' %}</a>
         {% else %}
-            <a href="{% url 'reviews:create' place.pk %}" class="btn-link block">{% trans 'Review creates' %}</a>
+            <a href="{% url 'reviews:create' place.pk %}" class="btn-link block mb-5">{% trans 'Review creates' %}</a>
+            
         {% endif %}
     </div>
 

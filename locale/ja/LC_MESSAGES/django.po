@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-02 01:32+0900\n"
+"POT-Creation-Date: 2021-09-02 16:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,6 +32,15 @@ msgstr "ユーザー"
 #: .\conversations\models.py:55
 msgid "conversation"
 msgstr "会話"
+
+#: .\lists\views.py:15
+msgid "My Fovorite saved"
+msgstr "セーブできました"
+
+#: .\lists\views.py:19
+#| msgid "User does not exist"
+msgid "Place does not exist"
+msgstr "`場所が存在しません"
 
 #: .\places\forms.py:10 .\places\forms.py:11 .\places\models.py:36
 msgid "city"
@@ -185,30 +194,33 @@ msgstr "Lineでログイン"
 msgid "Continue with Kakao"
 msgstr "Kakaoでログイン"
 
-#: .\templates\places\place_detail.html:34
+#: .\templates\places\place_detail.html:31
+msgid "Save to Favorites"
+msgstr "My favoritesに追加"
+
+#: .\templates\places\place_detail.html:35
 msgid "Reviews"
 msgstr "レビュー"
 
-#: .\templates\places\place_detail.html:56
+#: .\templates\places\place_detail.html:57
 msgid "Update"
 msgstr "レビューを更新"
 
-#: .\templates\places\place_detail.html:57
+#: .\templates\places\place_detail.html:58
 #: .\templates\places\place_photos.html:25
 msgid "Delete"
 msgstr "削除"
 
-#: .\templates\places\place_detail.html:72
-#, fuzzy
+#: .\templates\places\place_detail.html:73
 #| msgid "Edit Profile"
 msgid "Edit Place"
-msgstr "プロフィールを編集"
+msgstr "場所を編集"
 
-#: .\templates\places\place_detail.html:73
+#: .\templates\places\place_detail.html:74
 msgid "Delete Place"
 msgstr "場所を削除"
 
-#: .\templates\places\place_detail.html:75
+#: .\templates\places\place_detail.html:76
 msgid "Review creates"
 msgstr "レビューを登録"
 
