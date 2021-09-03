@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load on_favs i18n %}
 
 {% block page_title %}
     {{place.name}}
@@ -28,7 +28,12 @@
                 <span class="mt-2 text-gray-700">{{place.viewfinder.first_name}}</span>
             </a>
         </div>
-        <a href="{% url 'lists:save-place' place.pk %}" class="btn-link block mb-5 w-2/6">{% trans 'Save to Favorites' %}</a>
+        {% on_favs place as on_favs_boolean %}
+        {% if on_favs_boolean %}
+        <a href="{% url 'lists:toggle-place' place.pk %}?action=remove" class="block mb-5 w-2/6 text-red-500">{% trans 'Remove to Favorites' %}</a>
+        {% else %}
+        <a href="{% url 'lists:toggle-place' place.pk %}?action=add" class="block mb-5 w-2/6 text-indigo-600">{% trans 'Save to Favorites' %}</a>
+        {% endif %}
         <div class="flex border-section"></div>
         <p class="border-section">{{place.description}}</p>
         <div class="mt-10">

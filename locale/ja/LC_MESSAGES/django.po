@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-02 16:29+0900\n"
+"POT-Creation-Date: 2021-09-03 13:30+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,19 @@ msgstr "ユーザー"
 msgid "conversation"
 msgstr "会話"
 
-#: .\lists\views.py:15
+#: .\lists\views.py:19
 msgid "My Fovorite saved"
 msgstr "セーブできました"
 
-#: .\lists\views.py:19
-#| msgid "User does not exist"
+#: .\lists\views.py:22
+msgid "My Fovorite removed"
+msgstr "削除できました"
+
+#: .\lists\views.py:25
+msgid "You can't this"
+msgstr "できません"
+
+#: .\lists\views.py:29
 msgid "Place does not exist"
 msgstr "`場所が存在しません"
 
@@ -167,18 +174,23 @@ msgid "Create Place"
 msgstr "場所登録"
 
 #: .\templates\partials\nav.html:6
+#| msgid "Save to Favorites"
+msgid "Favorites"
+msgstr "お気に入りリスト"
+
+#: .\templates\partials\nav.html:7
 msgid "Profile"
 msgstr "プロフィール"
 
-#: .\templates\partials\nav.html:7
+#: .\templates\partials\nav.html:8
 msgid "Log out"
 msgstr "ログアウト"
 
-#: .\templates\partials\nav.html:9
+#: .\templates\partials\nav.html:10
 msgid "Login"
 msgstr "ログイン"
 
-#: .\templates\partials\nav.html:10 .\templates\users\login.html:21
+#: .\templates\partials\nav.html:11 .\templates\users\login.html:21
 msgid "Sign up"
 msgstr "会員登録"
 
@@ -194,33 +206,37 @@ msgstr "Lineでログイン"
 msgid "Continue with Kakao"
 msgstr "Kakaoでログイン"
 
-#: .\templates\places\place_detail.html:31
+#: .\templates\places\place_detail.html:33
+#| msgid "Save to Favorites"
+msgid "Remove to Favorites"
+msgstr "My favoritesから削除"
+
+#: .\templates\places\place_detail.html:35
 msgid "Save to Favorites"
 msgstr "My favoritesに追加"
 
-#: .\templates\places\place_detail.html:35
+#: .\templates\places\place_detail.html:40
 msgid "Reviews"
 msgstr "レビュー"
 
-#: .\templates\places\place_detail.html:57
+#: .\templates\places\place_detail.html:62
 msgid "Update"
 msgstr "レビューを更新"
 
-#: .\templates\places\place_detail.html:58
+#: .\templates\places\place_detail.html:63
 #: .\templates\places\place_photos.html:25
 msgid "Delete"
 msgstr "削除"
 
-#: .\templates\places\place_detail.html:73
-#| msgid "Edit Profile"
+#: .\templates\places\place_detail.html:78
 msgid "Edit Place"
 msgstr "場所を編集"
 
-#: .\templates\places\place_detail.html:74
+#: .\templates\places\place_detail.html:79
 msgid "Delete Place"
 msgstr "場所を削除"
 
-#: .\templates\places\place_detail.html:76
+#: .\templates\places\place_detail.html:81
 msgid "Review creates"
 msgstr "レビューを登録"
 

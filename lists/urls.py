@@ -5,5 +5,6 @@ app_name = "lists"
 
 
 urlpatterns = [
-    path("list-adds/<int:place_pk>/", views.save_place, name="save-place"),
+    path("toggle/<int:place_pk>/", views.toggle_place, name="toggle-place"),
+    path("favs/", views.SeeFavsView.as_view(), name="see-favs"),
 ]

@@ -3,6 +3,7 @@
     
     {% if user.is_authenticated %}
     <li class="nav_link"><a href="{%url 'places:create' %}">{% trans 'Create Place' %}</a></li>
+    <li class="nav_link"><a href="{%url 'lists:see-favs' %}">{% trans 'Favorites' %}({{user.list.places.count}})</a></li>
     <li class="nav_link"><a href="{{user.get_absolute_url}}">{% trans 'Profile' %}</a></li>
     <li class="nav_link"><a href="{% url "users:logout" %}">{% trans 'Log out' %}</a></li>
     {% else %}
