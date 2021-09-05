@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, reverse
 from django.views.generic import TemplateView
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
 from places import models as place_models
 from users.mixins import LoggedInOnlyView
