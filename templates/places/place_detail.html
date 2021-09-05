@@ -34,6 +34,11 @@
         {% else %}
         <a href="{% url 'lists:toggle-place' place.pk %}?action=add" class="block mb-5 w-2/6 text-indigo-600">{% trans 'Save to Favorites' %}</a>
         {% endif %}
+        
+        {% if user.pk != place.viewfinder.pk %}
+        <a href="{% url 'conversations:go' place.viewfinder.pk place.pk %}" class="text-blue-500">{% trans 'Send to Message' %}</a>
+        {% endif %}
+            
         <div class="flex border-section"></div>
         <p class="border-section">{{place.description}}</p>
         <div class="mt-10">
