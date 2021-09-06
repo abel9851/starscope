@@ -51,7 +51,7 @@
             </div>
             <form action="" method="POST" class="mt-10 w-1/2 mx-auto">
                 {% csrf_token %}
-                <input class="border-box mb-5"name="message" placeholder="Write a Message" type="text" required />
+                <input class="border-box mb-5"name="message" placeholder="{% trans 'Write a Message' %}" type="text" required />
                 <button class="btn-link">{% trans 'Send Comment' %}</button>
             </form>
         </div>

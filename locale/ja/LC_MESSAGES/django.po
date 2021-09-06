@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-03 13:30+0900\n"
+"POT-Creation-Date: 2021-09-06 19:56+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,19 +33,23 @@ msgstr "ユーザー"
 msgid "conversation"
 msgstr "会話"
 
-#: .\lists\views.py:19
-msgid "My Fovorite saved"
-msgstr "セーブできました"
-
-#: .\lists\views.py:22
-msgid "My Fovorite removed"
-msgstr "削除できました"
-
-#: .\lists\views.py:25
+#: .\conversations\views.py:22 .\lists\views.py:24
 msgid "You can't this"
 msgstr "できません"
 
-#: .\lists\views.py:29
+#: .\conversations\views.py:48 .\conversations\views.py:64
+msgid "You can't access"
+msgstr "権限がありません"
+
+#: .\lists\views.py:18
+msgid "My Fovorite saved"
+msgstr "セーブできました"
+
+#: .\lists\views.py:21
+msgid "My Fovorite removed"
+msgstr "削除できました"
+
+#: .\lists\views.py:28
 msgid "Place does not exist"
 msgstr "`場所が存在しません"
 
@@ -57,7 +61,7 @@ msgstr "都市"
 msgid "country"
 msgstr "国"
 
-#: .\places\forms.py:18 .\users\models.py:78
+#: .\places\forms.py:18 .\users\models.py:79
 msgid "supercontentprovider"
 msgstr "優秀コンテンツ提供者"
 
@@ -157,15 +161,27 @@ msgstr "レビューを削除しました"
 msgid "Search by city"
 msgstr "都市を検索してください"
 
+#: .\templates\conversations\conversation_detail.html:31
+msgid "no messages"
+msgstr "メッセージがありません"
+
+#: .\templates\conversations\conversation_detail.html:54
+msgid "Write a Message"
+msgstr "メッセージを入力してください"
+
+#: .\templates\conversations\conversation_detail.html:55
+msgid "Send Comment"
+msgstr "メッセージを送る"
+
 #: .\templates\partials\footer.html:4
 msgid "&copy; starscope"
 msgstr "スタースコープ"
 
-#: .\templates\partials\footer.html:13 .\users\models.py:32
+#: .\templates\partials\footer.html:13 .\users\models.py:33
 msgid "English"
 msgstr "英語"
 
-#: .\templates\partials\footer.html:18 .\users\models.py:31
+#: .\templates\partials\footer.html:18 .\users\models.py:32
 msgid "Japanese"
 msgstr "日本語"
 
@@ -174,23 +190,26 @@ msgid "Create Place"
 msgstr "場所登録"
 
 #: .\templates\partials\nav.html:6
-#| msgid "Save to Favorites"
 msgid "Favorites"
 msgstr "お気に入りリスト"
 
 #: .\templates\partials\nav.html:7
+msgid "Conversations"
+msgstr "会話"
+
+#: .\templates\partials\nav.html:8
 msgid "Profile"
 msgstr "プロフィール"
 
-#: .\templates\partials\nav.html:8
+#: .\templates\partials\nav.html:9
 msgid "Log out"
 msgstr "ログアウト"
 
-#: .\templates\partials\nav.html:10
+#: .\templates\partials\nav.html:11
 msgid "Login"
 msgstr "ログイン"
 
-#: .\templates\partials\nav.html:11 .\templates\users\login.html:21
+#: .\templates\partials\nav.html:12 .\templates\users\login.html:21
 msgid "Sign up"
 msgstr "会員登録"
 
@@ -207,7 +226,6 @@ msgid "Continue with Kakao"
 msgstr "Kakaoでログイン"
 
 #: .\templates\places\place_detail.html:33
-#| msgid "Save to Favorites"
 msgid "Remove to Favorites"
 msgstr "My favoritesから削除"
 
@@ -215,28 +233,32 @@ msgstr "My favoritesから削除"
 msgid "Save to Favorites"
 msgstr "My favoritesに追加"
 
-#: .\templates\places\place_detail.html:40
+#: .\templates\places\place_detail.html:39
+msgid "Send to Message"
+msgstr "メッセージを送る"
+
+#: .\templates\places\place_detail.html:45
 msgid "Reviews"
 msgstr "レビュー"
 
-#: .\templates\places\place_detail.html:62
+#: .\templates\places\place_detail.html:74
 msgid "Update"
 msgstr "レビューを更新"
 
-#: .\templates\places\place_detail.html:63
+#: .\templates\places\place_detail.html:75
 #: .\templates\places\place_photos.html:25
 msgid "Delete"
 msgstr "削除"
 
-#: .\templates\places\place_detail.html:78
+#: .\templates\places\place_detail.html:91
 msgid "Edit Place"
 msgstr "場所を編集"
 
-#: .\templates\places\place_detail.html:79
+#: .\templates\places\place_detail.html:92
 msgid "Delete Place"
 msgstr "場所を削除"
 
-#: .\templates\places\place_detail.html:81
+#: .\templates\places\place_detail.html:94
 msgid "Review creates"
 msgstr "レビューを登録"
 
@@ -325,47 +347,47 @@ msgstr "メールが既に存在します"
 msgid "Password confirmation does not match"
 msgstr "パスワードが一致しません"
 
-#: .\users\models.py:21
+#: .\users\models.py:22
 msgid "Male"
 msgstr "男性"
 
-#: .\users\models.py:22
+#: .\users\models.py:23
 msgid "Female"
 msgstr "女性"
 
-#: .\users\models.py:23
+#: .\users\models.py:24
 msgid "Other"
 msgstr "その他"
 
-#: .\users\models.py:33
+#: .\users\models.py:34
 msgid "Korean"
 msgstr "韓国語"
 
-#: .\users\models.py:58
+#: .\users\models.py:59
 msgid "avatar"
 msgstr "アバター"
 
-#: .\users\models.py:60
+#: .\users\models.py:61
 msgid "gender"
 msgstr "性別"
 
-#: .\users\models.py:62
+#: .\users\models.py:63
 msgid "bio"
 msgstr "紹介"
 
-#: .\users\models.py:63
+#: .\users\models.py:64
 msgid "birthdate"
 msgstr "生年月日"
 
-#: .\users\models.py:65
+#: .\users\models.py:66
 msgid "language"
 msgstr "言語"
 
-#: .\users\models.py:72
+#: .\users\models.py:73
 msgid "currency"
 msgstr "カレンシー"
 
-#: .\users\models.py:82
+#: .\users\models.py:83
 msgid "login_method"
 msgstr "ログイン方法"
 
