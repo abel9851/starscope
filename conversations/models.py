@@ -22,7 +22,7 @@ class Conversation(core_models.TimeStampedModel):
         if usernames == []:
             return "No users"
         else:
-            return ", ".join(usernames)
+            return " & ".join(usernames) + " conversation"
 
     def count_participants(self):
         return self.participants.count()
