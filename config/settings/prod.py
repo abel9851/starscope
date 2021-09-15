@@ -19,3 +19,14 @@ AWS_DEFAULT_ACL = "public-read"
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}.static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = []
+
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "HOST": "starscope-database.ctmb7reo1s7l.ap-northeast-1.rds.amazonaws.com",
+        "PORT": "3306",
+        "NAME": "starscope-database",
+        "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
+    }
+}
