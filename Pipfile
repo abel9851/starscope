@@ -9,6 +9,8 @@ pillow = "*"
 django-seed = "*"
 django-dotenv = "*"
 requests = "*"
+boto3 = "*"
+django-storages = "*"
 
 [dev-packages]
 flake8 = "*"
