@@ -1,6 +1,6 @@
 from .base import *
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["35.74.38.181", ".starscope.ga"]
 DEBUG = False
 
 DEFAULT_FILE_STORAGE = "config.storage.S3MediaStorage"
