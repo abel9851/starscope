@@ -142,3 +142,7 @@ cython_debug/
 # Photos
 uploads/
 node_modules/
+
+
+# Dockerfile
+Dockerfile
