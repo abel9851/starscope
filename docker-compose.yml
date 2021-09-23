@@ -13,9 +13,7 @@ services:
       - django_container_gunicorn
 
   django_container_gunicorn:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    image: django_image:1
     env_file:
       - ./.env.prod
     networks:
