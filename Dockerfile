@@ -4,7 +4,9 @@ RUN apt -y update && apt -y dist-upgrade
 
 WORKDIR /home/starscope/
 
-RUN pip install -r requirements.txt
+COPY ./requirements.txt /srv
+
+RUN pip install -r /srv/requirements.txt
 
 RUN pip install mysqlclient
 
