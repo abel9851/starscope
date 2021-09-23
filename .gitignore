@@ -114,6 +114,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.env.prod
 
 # Spyder project settings
 .spyderproject
@@ -143,6 +144,5 @@ cython_debug/
 uploads/
 node_modules/
 
-
-# Dockerfile
-Dockerfile
+# nginx
+nginx.conf
