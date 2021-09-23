@@ -8,8 +8,6 @@ services:
       - /home/django_course/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
-    depends_on:
-      - django_container_gunicorn
 
   django_container_gunicorn:
     image: django_image:1
