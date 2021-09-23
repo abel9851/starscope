@@ -1,8 +1,5 @@
 FROM python:3.9.1
 
-
-
-
 RUN apt -y update && apt -y dist-upgrade
 
 RUN pip3 install --upgrade pip
