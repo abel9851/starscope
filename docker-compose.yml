@@ -1,8 +1,7 @@
-version: "3.8"
+version: "3"
 services:
   nginx:
     image: nginx:1.19.5
-    restart: always
     networks:
       - network
     volumes:
@@ -14,6 +13,7 @@ services:
 
   django_container_gunicorn:
     image: django_image:1
+    container_name: django_container_gunicorn
     env_file:
       - ./.env.prod
     networks:
