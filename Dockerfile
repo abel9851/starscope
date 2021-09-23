@@ -2,10 +2,6 @@ FROM python:3.9.1
 
 RUN apt -y update && apt -y dist-upgrade
 
-WORKDIR /home/
-
-RUN git clone https://github.com/abel9851/starscope.git
-
 WORKDIR /home/starscope/
 
 RUN pip install -r requirements.txt
