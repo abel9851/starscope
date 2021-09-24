@@ -30,5 +30,8 @@ DATABASES = {
         "NAME": "dockermysql",
         "USER": "admin",
         "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
+        "OPTIONS": {
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
