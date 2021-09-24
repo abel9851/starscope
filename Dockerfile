@@ -4,7 +4,9 @@ RUN apt -y update && apt -y dist-upgrade
 
 WORKDIR /home/
 
-RUN echo "wow"
+RUN echo "fixing"
+
+RUN echo "hi"
 
 RUN git clone https://github.com/abel9851/starscope.git
 
