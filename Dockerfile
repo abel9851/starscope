@@ -2,8 +2,7 @@ FROM python:3.9.1
 
 RUN apt -y update && apt -y dist-upgrade
 
-RUN pip3 install --upgrade pip
-RUN pip3 install --upgrade setuptools
+RUN echo "hello"
 
 WORKDIR /home/
 
