@@ -6,6 +6,8 @@ WORKDIR /home/
 
 RUN echo "hi"
 
+RUN echo "hello"
+
 RUN git clone https://github.com/abel9851/starscope.git
 
 WORKDIR /home/starscope/

@@ -76,5 +76,8 @@ class Place(core_models.TimeStampedModel):
             return None
 
     def get_next_four_photos(self):
-        photos = self.photos.all()[1:5]
-        return photos
+        try:
+            photos = self.photos.all()[1:5]
+            return photos
+        except ValueError:
+            return None
