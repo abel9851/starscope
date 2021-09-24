@@ -27,7 +27,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "HOST": "starscope-database.ctmb7reo1s7l.ap-northeast-1.rds.amazonaws.com",
         "PORT": "3306",
-        "NAME": "starscope-database",
+        "NAME": "dockermysql",
+        "USER": "admin",
         "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
     }
 }
