@@ -8,6 +8,8 @@ RUN echo "hello"
 
 RUN echo "fixing2"
 
+RUN echo "fix1"
+
 RUN git clone https://github.com/abel9851/starscope.git
 
 WORKDIR /home/starscope/
