@@ -109,7 +109,7 @@ def delete_place(request, place_pk):
 class PlacePhotosView(user_mixins.LoggedInOnlyView, DetailView):
 
     model = models.Place
-    template_name = "places/Place_photos.html"
+    template_name = "places/place_photos.html"
 
     def get_object(self, queryset=None):
         place = super().get_object(queryset=queryset)
@@ -137,7 +137,7 @@ class EditPhotoView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateVie
 
     model = models.Photo
     pk_url_kwarg = "photo_pk"
-    template_name = "places/Photo_edit.html"
+    template_name = "places/photo_edit.html"
     success_message = "Photo Updated"
     fields = ("caption",)
 
