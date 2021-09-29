@@ -22,4 +22,7 @@ COPY ./.env /home/starscope
 
 EXPOSE 8000
 
-CMD ["bash", "-c", "python manage.py collectstatic --noinput && python manage.py migrate && gunicorn config.wsgi:application --bind 0.0.0.0:8000"]
+# po, mo 명령어 수정. 잘안되면 노마드코더 영상보고 하기
+# 명령어도 노마드코더 보고 알아내기
+
+CMD ["bash", "-c", "python manage.py collectstatic --noinput && python manage.py migrate && django-admin compilemessages && gunicorn config.wsgi:application --bind 0.0.0.0:8000"]

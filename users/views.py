@@ -73,7 +73,7 @@ def complete_verification(request, key):
 
 def github_login(request):
     client_id = os.environ.get("GH_ID")
-    redirect_uri = "http://127.0.0.1:8000/users/login/github/callback"
+    redirect_uri = "http://starscope.ga/users/login/github/callback"
     return redirect(
         f"https://github.com/login/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&scope=read:user"
     )
@@ -146,7 +146,7 @@ def github_callback(request):
 
 def kakao_login(request):
     REST_API_KEY = os.environ.get("KAKAO_ID")
-    REDIRECT_URI = "http://127.0.0.1:8000/users/login/kakao/callback"
+    REDIRECT_URI = "http://starscope.ga/users/login/kakao/callback"
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code"
     )
@@ -160,7 +160,7 @@ def kakao_callback(request):
     try:
         code = request.GET.get("code")
         client_id = os.environ.get("KAKAO_ID")
-        redirect_uri = "http://127.0.0.1:8000/users/login/kakao/callback"
+        redirect_uri = "http://starscope.ga/users/login/kakao/callback"
         token_request = requests.post(
             f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={redirect_uri}&code={code}"
         )
@@ -215,7 +215,7 @@ def kakao_callback(request):
 
 def line_login(request):
     client_id = os.environ.get("LINE_ID")
-    redirect_uri = "http://127.0.0.1:8000/users/login/line/callback"
+    redirect_uri = "http://starscope.ga/users/login/line/callback"
     state = "line2350"
     return redirect(
         f"https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id={client_id}&redirect_uri={redirect_uri}&state={state}&scope=profile"
@@ -234,7 +234,7 @@ def line_callback(request):
         data_programs = {
             "grant_type": "authorization_code",
             "code": code,
-            "redirect_uri": "http://127.0.0.1:8000/users/login/line/callback",
+            "redirect_uri": "http://starscope.ga/users/login/line/callback",
             "client_id": os.environ.get("LINE_ID"),
             "client_secret": os.environ.get("LINE_SECRET"),
         }
