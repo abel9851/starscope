@@ -48,3 +48,12 @@ https://starscope.ga
 - お気に入り機能(気に入った場所をリストに追加)
 
 - 翻訳機能(日本語、英語選択可能)
+
+# 今後の修正計画
+- google map機能追加
+- 天体観測API追加
+- AWS public, private subnet 分離
+- 検索機能修正
+- イメージ追加方法変更
+- 再コメント機能追加
+- Circle CI投入
