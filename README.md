@@ -27,7 +27,7 @@ https://starscope.ga
 
 # ER図
 # AWS構成図
-
+<img src="https://user-images.githubusercontent.com/66953834/135719247-82fa40e1-a904-427b-b981-c9301e40b219.png" />
 
 # 機能一覧
 
