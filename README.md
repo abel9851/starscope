@@ -10,10 +10,9 @@ https://starscope.ga
 # 使用技術
 - プロントエンド
   - HTML/CSS
+  - Tailwind CSS(gulp使用)
   - Javascipt(翻訳機能)
   - Django templates
-
-
 
 - バックエンド
   - Python 3.9.1
@@ -22,8 +21,9 @@ https://starscope.ga
 - インフラ
   - Docker / Docker swarm
   - AWS (EC2 / RDS(MySQL) / S3 / VPC / IAM / Route53 / ACM / ALB)
-  - Nginx
-  - Gunicorn
+  - MySQL 5.7.33
+  - Nginx 1.19.5
+  - Gunicorn 20.1.0
 
 # ER図
 # AWS構成図
