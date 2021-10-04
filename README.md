@@ -26,6 +26,7 @@ https://starscope.ga
   - Gunicorn 20.1.0
 
 # ER図
+<img src="https://user-images.githubusercontent.com/66953834/135827383-0951ab43-8692-4b38-9971-6c8dfc5ab451.png" />
 # AWS構成図
 <img src="https://user-images.githubusercontent.com/66953834/135719952-3d013d9d-c61b-4c56-ae00-c017868d0479.png" />
 
