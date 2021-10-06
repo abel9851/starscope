@@ -4,9 +4,11 @@ RUN apt -y update && apt -y dist-upgrade
 
 WORKDIR /home/
 
-RUN echo "hello3"
+RUN echo "hello1"
 
-RUN echo "fixing7"
+RUN echo "hello5"
+
+RUN echo "fixing2"
 
 RUN git clone https://github.com/abel9851/starscope.git
 
