@@ -55,6 +55,7 @@ https://starscope.ga
 - 天体観測API追加
 - AWS public, private subnet 分離
 - 検索機能修正
+- モバイルサイズにも対応
 - イメージ追加方法変更
 - 再コメント機能追加
 - Circle CI投入
